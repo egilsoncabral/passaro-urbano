@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
-import { interval } from 'rxjs';
+import { interval, Subscription, Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'pu-oferta',
@@ -10,7 +10,7 @@ import { interval } from 'rxjs';
   styleUrls: ['./oferta.component.css'],
   providers:[OfertasService]
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit, OnDestroy {
 
   public oferta:Oferta
 
@@ -22,16 +22,10 @@ export class OfertaComponent implements OnInit {
     .then((oferta:Oferta) => {
       this.oferta = oferta
     })
-    // this.route.params.subscribe(
-    //   (parametro:any)=>{    },
-    //   (erro:any) => {},
-    //   () => {}
-    // )
-    let tempo = interval(500);
-    tempo.subscribe((intervalo:number)=>{
-    })
 
+  }
 
+  ngOnDestroy(){
   }
 
 }
