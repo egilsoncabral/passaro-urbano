@@ -15,6 +15,9 @@ import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+//Pipe
+import {DescricaoReduzida} from './util/descricao-reduzida.pipe';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component'
 
 registerLocaleData(localePt);
 
@@ -28,7 +31,8 @@ registerLocaleData(localePt);
     DiversaoComponent,
     OfertaComponent,
     ComoUsarComponent,
-    OndeFicaComponent
+    OndeFicaComponent, 
+    DescricaoReduzida, OrdemCompraComponent
   ],
   imports: [
     BrowserModule,

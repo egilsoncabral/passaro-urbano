@@ -20,7 +20,7 @@ export class TopoComponent implements OnInit {
 
   ngOnInit() {
     this.ofertas = this.subjectPesquisa
-    .debounceTime(1000)
+    .debounceTime(100)
     .distinctUntilChanged()
     .switchMap((termo:string) => {
       if(termo.trim() === ''){
@@ -28,18 +28,17 @@ export class TopoComponent implements OnInit {
       }
       return this.ofertasService.pesquisaOfertas(termo)
     }).catch((erro:any) => {
-      console.log(erro)
       return Observable.of<Oferta[]>([])
     })
-    this.ofertas.subscribe(
-      (ofertas:Oferta[]) => {
-        this.ofertas2 = ofertas
-      }
-    )
   }
 
   public pesquisa(termoPesquisa: string):void{
     this.subjectPesquisa.next(termoPesquisa)
+  }
+
+  public limpaPesquisa():void{
+    this.subjectPesquisa.next('')
+    //document.querySelector('#seach').setAttribute('value', '')
   }
 
 }
