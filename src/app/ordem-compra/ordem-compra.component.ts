@@ -1,58 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import  OrdemCompraService  from '../ordem-compra.service'
+import  Pedido  from '../shared/pedido.model'
+import {NgForm} from '@angular/forms'
 
 @Component({
-  selector: 'pu-ordem-compra',
+  selector: 'app-ordem-compra',
   templateUrl: './ordem-compra.component.html',
-  styleUrls: ['./ordem-compra.component.css']
+  styleUrls: ['./ordem-compra.component.css'],
+  providers: [ OrdemCompraService ]
 })
 export class OrdemCompraComponent implements OnInit {
 
+  public idPedidoCompra:number
 
-  public endereco: string = ''
-  public numero: string = ''
-  public complemento: string = ''
-  public formaPagamento: string = ''
+  @ViewChild('formulario')
+  public formulario:NgForm
 
-  //Controle
-  public enderecoValido: boolean
-  public numeroValido: boolean
-  public complementoValido: boolean
-  public formaPagamentoValido: boolean
-
-  //estados primitivos dos campos (pristine)
-  public enderecoEstadoPrimitivo : boolean = true
-  public numeroEstadoPrimitivo: boolean = true
-  public complementoEstadoPrimitivo : boolean = true
-  public formaPagamentoEstadoPrimitivo : boolean = true
- 
-
-  constructor() { }
+  constructor(private ordemCompraService: OrdemCompraService) { }
 
   ngOnInit() {
+    
   }
 
-  public atualizaEndereco(endereco:string):void{
-    this.endereco = endereco
-    this.enderecoEstadoPrimitivo = false
-    this.enderecoValido = endereco.length > 3 ? true : false
-  }
+  public confirmarCompra() : void{
 
-  public atualizaNumero(numero:string):void{
-    this.numero = numero
-    this.numeroEstadoPrimitivo = false
-    this.numeroValido = numero.length > 0 ? true : false
-  }
+    let pedido : Pedido = new Pedido(this.formulario.value.endereco, this.formulario.value.numero, this.formulario.value.complemento, this.formulario.value.formaPagamento)
 
-  public atualizaComplemento(complemento:string):void{
-    this.complemento = complemento
-    this.complementoEstadoPrimitivo = false
-    this.complementoValido = complemento.length > 0 ? true : false
+    this.ordemCompraService.efetivarCompra(pedido).subscribe((resposta) =>{
+        if (resposta.id) {
+          this.idPedidoCompra = resposta.id
+        }
+    })
   }
-
-  public atualizaFormaPagamento(formaPagamento:string):void{
-    this.formaPagamento = formaPagamento
-    this.formaPagamentoEstadoPrimitivo = false
-    this.formaPagamentoValido = formaPagamento.length > 0 ? true : false
-  }
-
 }
