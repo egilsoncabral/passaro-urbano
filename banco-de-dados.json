@@ -206,6 +206,20 @@
       "complemento": "ass",
       "formaPagamento": "debito",
       "id": 3
+    },
+    {
+      "endereco": "rua teste 123",
+      "numero": "20",
+      "complemento": "casa 10",
+      "formaPagamento": "dinheiro",
+      "id": 4
+    },
+    {
+      "endereco": "rua teste 321",
+      "numero": "20",
+      "complemento": "teste123",
+      "formaPagamento": "debito",
+      "id": 5
     }
   ]
 }
