@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import {URL_API} from './app.api';
 import { catchError, map, tap } from 'rxjs/operators';
 
-
+@Injectable()
 class OrdemCompraService{
     
     constructor(private http: HttpClient){}
