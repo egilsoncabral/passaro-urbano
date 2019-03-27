@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "passaro-urbano-new": {
+    "passaro-urbano": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/passaro-urbano-new",
+            "outputPath": "dist/passaro-urbano",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "passaro-urbano-new:build"
+            "browserTarget": "passaro-urbano:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "passaro-urbano-new:build:production"
+              "browserTarget": "passaro-urbano:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "passaro-urbano-new:build"
+            "browserTarget": "passaro-urbano:build"
           }
         },
         "test": {
@@ -108,7 +108,7 @@
         }
       }
     },
-    "passaro-urbano-new-e2e": {
+    "passaro-urbano-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -117,11 +117,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "passaro-urbano-new:serve"
+            "devServerTarget": "passaro-urbano:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "passaro-urbano-new:serve:production"
+              "devServerTarget": "passaro-urbano:serve:production"
             }
           }
         },
@@ -137,5 +137,5 @@
       }
     }
   },
-  "defaultProject": "passaro-urbano-new"
+  "defaultProject": "passaro-urbano"
 }
