@@ -17,7 +17,7 @@ export class ComoUsarComponent implements OnInit {
 
     this.route.parent.params.subscribe((parametros:Params) =>{
       this.ofertasService.getComoUsarOfertaPorId(parametros.id)
-      .then((resposta:string)=>{this.comoUsar = resposta})
+      .subscribe((resposta:string)=>{this.comoUsar = resposta})
     })
     
   }

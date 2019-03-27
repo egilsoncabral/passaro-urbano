@@ -20,7 +20,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.params.subscribe((parametros:Params) =>{
       this.ofertasService.getOfertasPorId(parametros.id)
-      .then((oferta:Oferta) => {
+      .subscribe((oferta:Oferta) => {
         this.oferta = oferta
       })
     })

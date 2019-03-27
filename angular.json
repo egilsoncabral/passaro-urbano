@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "passaro-urbano": {
+    "passaro-urbano-new": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/passaro-urbano",
+            "outputPath": "dist/passaro-urbano-new",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,8 +30,8 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
-
-            ]
+            ],
+            "es5BrowserSupport": true
           },
           "configurations": {
             "production": {
@@ -49,25 +49,32 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "passaro-urbano:build"
+            "browserTarget": "passaro-urbano-new:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "passaro-urbano:build:production"
+              "browserTarget": "passaro-urbano-new:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "passaro-urbano:build"
+            "browserTarget": "passaro-urbano-new:build"
           }
         },
         "test": {
@@ -101,19 +108,20 @@
         }
       }
     },
-    "passaro-urbano-e2e": {
+    "passaro-urbano-new-e2e": {
       "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "passaro-urbano:serve"
+            "devServerTarget": "passaro-urbano-new:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "passaro-urbano:serve:production"
+              "devServerTarget": "passaro-urbano-new:serve:production"
             }
           }
         },
@@ -129,5 +137,5 @@
       }
     }
   },
-  "defaultProject": "passaro-urbano"
+  "defaultProject": "passaro-urbano-new"
 }

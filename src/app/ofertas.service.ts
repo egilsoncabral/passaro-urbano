@@ -1,5 +1,5 @@
 import {Oferta} from './shared/oferta.model'
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core'
 import { URL_API } from './app.api';
 import { Observable, Subject } from 'rxjs';
@@ -9,45 +9,49 @@ import { map, retry } from 'rxjs/operators';
 export class OfertasService{
 
 
-    constructor(private http:Http){}
+    constructor(private http:HttpClient){}
 
-    public getOfertas():Promise<Oferta[]>{
+    public getOfertas():Observable<any>{
         return this.http.get(`${URL_API}/ofertas?destaque=true`)
-        .toPromise()
-        .then((resposta:Response) => resposta.json())
+        .pipe(
+            map((resposta: Response) => resposta)
+         )
     }
 
-    public getOfertasPorCategoria(categoria:string): Promise<Oferta[]>{
+    public getOfertasPorCategoria(categoria:string): Observable<any>{
         return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
-        .toPromise()
-        .then((resposta:Response) => resposta.json())
+        .pipe(
+            map((resposta: Response) => resposta)
+         )
 
     }
 
-    public getOfertasPorId(id:number): Promise<Oferta>{
+    public getOfertasPorId(id:number): Observable<any>{
         return this.http.get(`${URL_API}/ofertas?id=${id}`)
-        .toPromise()
-        .then((resposta:Response) => resposta.json()[0])
+        .pipe(
+            map((resposta: Response) => resposta[0])
+         )
 
     }
 
-    public getComoUsarOfertaPorId(id:number): Promise<string>{
-        return this.http.get(`${URL_API}/como-usar?id=${id}`).toPromise()
-        .then((resposta:Response) => resposta.json()[0].descricao)
+    public getComoUsarOfertaPorId(id:number): Observable<any>{
+        return this.http.get(`${URL_API}/como-usar?id=${id}`)
+        .pipe(
+            map((resposta: Response) => resposta[0].descricao)
+         )
     }
 
-    public getOndeFicaOfertaPorId(id:number): Promise<string>{
-        return this.http.get(`${URL_API}/onde-fica?id=${id}`).toPromise()
-        .then((resposta:Response) => resposta.json()[0].descricao)
+    public getOndeFicaOfertaPorId(id:number): Observable<any>{
+        return this.http.get(`${URL_API}/onde-fica?id=${id}`)
+        .pipe(
+            map((resposta: Response) => resposta[0].descricao)
+         )
     }
 
-    public pesquisaOfertas(termo: string): Observable<Oferta[]>{
-        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`).pipe<Oferta[]>(
-            map((resposta:Response) => {
-              return resposta.json()
-            }), retry(10)
-        )
-        
+    public pesquisaOfertas(termo: string): Observable<any>{
+        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`).pipe(
+            map((resposta: Response) => resposta)
+         )
     }
 
 }
