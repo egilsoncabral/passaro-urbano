@@ -49,7 +49,14 @@ class CarrinhoService{
          )
          if (itemCarrinhoEncontrado) {
            itemCarrinhoEncontrado.quantidade -= 1
+           if (itemCarrinhoEncontrado.quantidade === 0) {
+               this.itens.splice(this.itens.indexOf(itemCarrinhoEncontrado), 1)
+           }
          }
+    }
+
+    public limparCarrinho() : void{
+        this.itens = []
     }
 }
 
