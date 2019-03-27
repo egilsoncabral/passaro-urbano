@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import  OrdemCompraService  from '../ordem-compra.service'
+import  {OrdemCompraService}  from '../ordem-compra.service'
 import  Pedido  from '../shared/pedido.model'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import {CarrinhoService} from '../carrinho.service';
 import { ItemCarrinho } from '../shared/item-carrinho.model';
 
@@ -10,7 +9,7 @@ import { ItemCarrinho } from '../shared/item-carrinho.model';
   selector: 'app-ordem-compra',
   templateUrl: './ordem-compra.component.html',
   styleUrls: ['./ordem-compra.component.css'],
-  providers: [ OrdemCompraService ]
+  providers: [OrdemCompraService]
 })
 export class OrdemCompraComponent implements OnInit {
 

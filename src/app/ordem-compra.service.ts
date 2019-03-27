@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import {URL_API} from './app.api';
 import { catchError, map, tap } from 'rxjs/operators';
 
-@Injectable()
-export default class OrdemCompraService{
+
+class OrdemCompraService{
     
     constructor(private http: HttpClient){}
 
@@ -25,3 +25,4 @@ export default class OrdemCompraService{
         )
     }
 }
+export {OrdemCompraService} 
